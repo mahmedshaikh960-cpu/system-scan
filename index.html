@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Scan</title>
+
+<style>
+body{
+    background:black;
+    color:#00ff00;
+    font-family:monospace;
+    padding:30px;
+}
+
+#terminal{
+    max-width:800px;
+}
+
+.line{
+    margin:4px 0;
+}
+
+.cursor{
+    display:inline-block;
+    width:10px;
+    background:#00ff00;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+
+const lines = [
+"Booting remote curiosity scanner...",
+"Connecting to neural network...",
+"Locating visitor...",
+"Analyzing personality traits...",
+"Checking procrastination levels...",
+"Scanning browser history...",
+"Searching for intelligence...",
+"Processing results..."
+];
+
+const roasts = [
+"Result: Visitor is 63% curiosity and 37% boredom.",
+"Warning: Excessive scrolling detected.",
+"Analysis complete: You clicked a mysterious link. Classic human behavior.",
+"System note: Visitor probably has 27 tabs open right now.",
+"Diagnosis: Mild internet addiction detected.",
+"Alert: Visitor intelligence detected... but still opening random links.",
+"Prediction: Visitor will stay here longer than planned."
+];
+
+function addLine(text){
+    const div = document.createElement("div");
+    div.className="line";
+    div.textContent=text;
+    terminal.appendChild(div);
+}
+
+let i = 0;
+
+function runTerminal(){
+
+    if(i < lines.length){
+        addLine("> " + lines[i]);
+        i++;
+        setTimeout(runTerminal,800);
+    } else {
+
+        setTimeout(()=>{
+            const roast = roasts[Math.floor(Math.random()*roasts.length)];
+            addLine("");
+            addLine(">>> SYSTEM RESULT <<<");
+            addLine(roast);
+            addLine("");
+            addLine("End of scan.");
+        },1000);
+    }
+}
+
+runTerminal();
+
+</script>
+
+</body>
+</html>
